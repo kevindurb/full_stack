@@ -35,5 +35,5 @@
     - name: Setup ansible-pull job
       ansible.builtin.cron:
         name: "Pull project to build"
-        minute: "*/15"
-        job: "ansible-pull -vvv -U https://github.com/kevindurb/full_stack.git -i 'localhost' infrastructure/build_server/build.yaml"
+        minute: "*/5"
+        job: "ansible-pull -vvv -o -U https://github.com/kevindurb/full_stack.git -i 'localhost' infrastructure/build_server/build.yaml >> /var/log/ansible-pull.log 2>&1"
