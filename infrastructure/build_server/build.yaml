@@ -1,23 +1,12 @@
 ---
 - hosts: all
   tasks:
-    - name: install dependencies
+    - name: run build
       community.docker.docker_container:
         name: npm_install
         image: node:14
         recreate: yes
-        command: npm install
-        working_dir: /usr/src/app
-        auto_remove: yes
-        interactive: yes
-        volumes:
-          - ./:/usr/src/app
-    - name: build
-      community.docker.docker_container:
-        name: build
-        image: node:14
-        recreate: yes
-        command: npm run build
+        command: ./scripts/build.sh
         working_dir: /usr/src/app
         auto_remove: yes
         interactive: yes
