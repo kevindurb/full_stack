@@ -1,0 +1,4 @@
+---
+- hosts: build_servers
+  tasks:
+    - ping:
