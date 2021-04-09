@@ -9,7 +9,7 @@ server.register(pov, {
   engine: {
     pug,
   },
-  root: path.join(__dirname, 'views'),
+  root: './src/views',
 })
 
 server.get('/', async (request, reply) => {
