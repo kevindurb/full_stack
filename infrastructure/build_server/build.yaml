@@ -1,14 +1,23 @@
 ---
 - hosts: all
   tasks:
-    - name: run build
+    - name: install dependencies
       community.docker.docker_container:
         name: npm_install
         image: node:14
-        recreate: yes
-        detach: no
-        entrypoint: /usr/src/app/scripts/build.sh
+        command: npm install
         working_dir: /usr/src/app
         interactive: yes
+        detach: no
+        volumes:
+          - ./:/usr/src/app
+    - name: build
+      community.docker.docker_container:
+        name: build
+        image: node:14
+        command: npm run build
+        working_dir: /usr/src/app
+        interactive: yes
+        detach: no
         volumes:
           - ./:/usr/src/app
