@@ -8,7 +8,6 @@
         recreate: yes
         command: ./scripts/build.sh
         working_dir: /usr/src/app
-        auto_remove: yes
         interactive: yes
         volumes:
           - ./:/usr/src/app
