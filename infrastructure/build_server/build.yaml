@@ -6,7 +6,8 @@
         name: npm_install
         image: node:14
         recreate: yes
-        command: ./scripts/build.sh
+        detach: no
+        entrypoint: ./scripts/build.sh
         working_dir: /usr/src/app
         interactive: yes
         volumes:
