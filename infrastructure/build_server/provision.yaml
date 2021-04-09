@@ -1,4 +1,31 @@
 ---
 - hosts: build_servers
+  remote_user: "{{ user }}"
+  vars:
+    ntp_timezone: America/Denver
+
+    github_users:
+      - name: kevindurb
+
+    security_sudoers_passwordless:
+      - kevindurb
+
+    ansible_install_method: pip
+
+  roles:
+    - geerlingguy.github-users
+    - geerlingguy.ntp
+    - geerlingguy.security
+    - role: geerlingguy.pip
+      become: yes
+    - role: geerlingguy.ansible
+      become: yes
+
+- hosts: build_servers
+  remote_user: kevindurb
   tasks:
-    - ping:
+    - name: Setup ansible-pull job
+      ansible.builtin.cron:
+        name: "Pull project to build"
+        minute: "*/15"
+        job: "ansible-pull -U https://github.com/kevindurb/full_stack.git -i 'localhost' infrastructure/build_server/build.yaml"

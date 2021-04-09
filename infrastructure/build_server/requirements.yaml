@@ -1,0 +1,5 @@
+- src: geerlingguy.github-users
+- src: geerlingguy.ntp
+- src: geerlingguy.security
+- src: geerlingguy.ansible
+- src: geerlingguy.pip
