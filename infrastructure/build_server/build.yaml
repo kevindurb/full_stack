@@ -3,7 +3,8 @@
   tasks:
     - name: install dependencies
       community.docker.docker_container:
-        name: npm_install
+        container_default_behavior: no_defaults
+        name: build
         image: node:14
         command: npm install
         working_dir: /usr/src/app
@@ -13,6 +14,7 @@
           - ./:/usr/src/app
     - name: build
       community.docker.docker_container:
+        container_default_behavior: no_defaults
         name: build
         image: node:14
         command: npm run build
