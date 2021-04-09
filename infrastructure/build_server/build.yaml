@@ -1,5 +1,5 @@
 ---
-- hosts: build_servers
+- hosts: all
   tasks:
     - name: install dependencies
       community.docker.docker_container:
